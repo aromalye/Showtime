@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<!-- movies -->
+<div class="container ">
+    <h3 class="text-center pt-3 ">Movies in {{ user.location }}</h3>
+    <div class="row align-items-center">
+        {% for movie in movies %}
+      <div class="col">
+        <div class="card m-3" style="width: 200px;">
+          <div class="container">
+            <a href="{% url 'moviedetail' movie.id  %}">
+            <img src="{{ movie.main_image.url }}" class="card-img-top p-1" alt="">
+            </a>
+          </div>
+          <div style="min-height: 100px;text-align: center;" > 
+            <p class="small">{{ movie.journer }}</p>
+            <h6 class="card-title">{{movie.movie_title}}</h6>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

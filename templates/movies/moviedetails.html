@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <!-- movie_details -->
+  <div class="movie" style="background-image: linear-gradient(90deg, rgb(26, 26, 26) 24.97%, rgb(26, 26, 26) 38.3%, rgba(26, 26, 26, 0.04) 97.47%, rgb(26, 26, 26) 100%), 
+  url('{movie.cover_image.url}');">
+      <div class="card mb-3" style=" width: 80%; background: transparent; color: rgb(255, 255, 255);">
+          <div class="row g-0">
+            <div class="col-md-4 p-3" style="width: 300px;">
+              <img src="{{ movie.main_image.url }}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ movie.movie_title }}</h5>
+                <p class="small">{{ movie.description }}</p>
+                <div class="container text-center">
+                  <div class="row justify-content-start">
+                    <div class="col-4">
+                      <p class="card-text">{{ movie.movie_format }}</small></p>
+                    </div>
+                    <div class="col-4">
+                      <p class="card-text">{{ movie.language }}</small></p>
+                    </div>
+                  </div>
+                </div>
+                <p class="small my-3">{{ movie.journer }}</p>
+                <a href="{% url 'movieshowlist' movie.id %}" class="btn btn-danger">Book Ticket</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- <div class="container" style="color:aliceblue ;">
+          <div class="row">
+            <div class="col-6">.col-6</div>
+            <div class="col-6">.col-6</div>
+          </div>
+      </div> -->
+  </div>
+
+
+
+{% endblock %}

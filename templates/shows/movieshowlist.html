@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+ <!-- title header -->
+ <div class="p-5" style="background-color:rgb(61, 61, 99) ;height: 150px; color: aliceblue;">
+    {% for show in shows %}
+    <h1>{{ show.movie }} - {{ show.movie.language }}</h1>
+    <p class="btn btn-sm btn-outline-light m-1 py-0">{{ show.movie.journer }}</p>
+    {% endfor %}
+</div>
+
+
+<!-- filter + Date -->
+<nav class="nav mx-0" style="background-color: #e4eef4; ">
+    <p class="btn btn-outline-danger mx-3 my-1 py-0" style="font-size:smaller;"><strong>THU <span style="font-size:large ;">01</span><br>Dec</strong></p>
+    <p class="btn btn-outline-danger mx-3 my-1 py-0" style="font-size:smaller;"><strong>THU <span style="font-size:large ;">02</span><br>Dec</strong></p>
+    <p class="btn btn-outline-danger mx-3 my-1 py-0" style="font-size:smaller;"><strong>THU <span style="font-size:large ;">03</span><br>Dec</strong></p>
+    <p class="btn btn-outline-danger mx-3 my-1 py-0" style="font-size:smaller;"><strong>THU <span style="font-size:large ;">04</span><br>Dec</strong></p>
+    <div class="row" style="margin-left: 100px;">
+        <div class="col-sm py-3">
+          <strong>Malayalam | 2D </strong>
+        </div>
+        <div class="col-sm p-1 mx-3">
+            <div class="dropdown">
+                <a class="btn btn-outline-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Filter price
+                </a>
+              
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
+        </div>
+        <div class="col-sm p-1 mx-3">
+            <div class="dropdown">
+                <a class="btn btn-outline-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Filter show time
+                </a>
+              
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
+        </div>
+      </div>    
+</nav>
+
+
+<!-- theater list -->
+<div class="container">
+    <div class="row justify-content-start">
+        <hr>
+        {% for show in shows %}
+        <div class="col-4 my-1">
+            <i class="fal fa-heart mx-3" style="font-size:x-large ;"></i>
+            <strong>{{ show.theater }}</strong> 
+        </div>
+        <div class="col-4">
+            <a href="{% url 'seatlayout' show.id %}" class="btn btn-sm btn-outline-success mx-3">{{show.time}}</a>
+            <!-- <p class="btn btn-sm btn-outline-success mx-3">5:45 PM</p> -->
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}

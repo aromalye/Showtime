@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div></div>
+
+
+<!-- <div class="container">
+    <p>{{ movie }}</p>
+    <p>{{ theater }}</p>
+    <p>{{ time }}</p>
+</div>
+
+<div class="container">
+
+{% for x in seats %}
+    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+    <label class="btn btn-outline-secondary" for="btncheck1">{{ x.seatname }}</label>
+{% endfor %} -->
+<!-- 
+</div> -->
+<nav class="navbar navbar-expand-lg" style="background-color: #124559;width: ;">
+    <div class="container-fluid"style="color: white;">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">Naalam mura</div>
+        JV Cinemas: Kattakkada | Friday, 23 Dec, 06:45 PM
+      </div>
+      <ul class="nav justify-content-end">
+          <li class="nav-item">
+              <button class="btn bt-sm btn-outline-light">2 tickets</button>
+              <i class="far fa-times-square m-3" style="font-size:large;"></i>
+          </li>
+      </ul>
+  </nav>
+
+  <ul class="nav m-1" style="background-color: #cce3de">
+    <li class="nav-item m-1">
+        <div class="ms-2 me-auto btn btn-sm btn-outline-success" style="font-size:xx-small;">
+        <div class="fw-bold" style="font-size:small;">11:15 AM</div>
+        DOLBY 7.1/2k
+      </div>
+    </li>
+    <li class="nav-item m-1">
+      <div class="ms-2 me-auto btn btn-sm btn-outline-success" style="font-size:xx-small;">
+        <div class="fw-bold" style="font-size:small;">2:00 PM</div>
+        DOLBY 7.1/2k
+      </div>
+    </li>
+    <li class="nav-item m-1">
+        <div class="ms-2 me-auto btn btn-sm btn-outline-success" style="font-size:xx-small;">
+        <div class="fw-bold" style="font-size:small;">7:15 PM</div>
+        DOLBY 7.1/2k
+      </div>
+    </li>
+    <li class="nav-item m-1">
+        <div class="ms-2 me-auto btn btn-sm btn-outline-success" style="font-size:xx-small;">
+        <div class="fw-bold" style="font-size:small;">10:15 PM</div>
+        DOLBY 7.1/2k
+      </div>
+    </li>
+  </ul>
+
+  <div class="container-fluid text-center">
+      <span class="light-grey-text">Seat-Rs. 160.00</span><br><hr>
+       <div class="seat" id="seats-royal"  seatrow="5" seatcol="8"></div>
+  <div>
+      
+  
+
+  <script type="text/javascript">
+      
+      let royal = document.getElementById("seats-royal");
+      let seatrow = Number(royal.getAttribute("seatrow"));
+      let seatcol = Number(royal.getAttribute("seatcol"));
+      let currentrow;
+      for(let i=0;i<seatrow;i++){
+          royal.innerHTML = royal.innerHTML + `<div class='' id='row-${i}'><span class="">${String.fromCharCode(65+i)} &nbsp; &nbsp; </span></div>&nbsp;`;
+          currentrow = document.getElementById(`row-${i}`);
+          for(let j=0;j<seatcol;j++){
+              currentrow.innerHTML = currentrow.innerHTML + `<a class='btn btn-sm btn-outline-dark m-1'>${j+1}</a>`;
+          }
+      }
+  </script>
+
+{% endblock %}
