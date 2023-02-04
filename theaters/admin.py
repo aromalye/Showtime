@@ -4,7 +4,7 @@ from . models import *
 
 
 class TheaterAdmin(admin.ModelAdmin):
-    list_display = ('theater_name','district')
+    list_display = ('theater_name','district', 'id')
 
 
 admin.site.register(Theaters, TheaterAdmin)

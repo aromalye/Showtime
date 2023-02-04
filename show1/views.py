@@ -1,9 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import CreateView, TemplateView
-# from rest_framework import generics
-# from .serializers import ShowSerializers, SeatSearializers
-from .models import MovieShow
+from rest_framework import generics
+from .serializers import ShowSerializer, SeatSerializer
+from .models import MovieShow, Seats
+from theaters.models import Theaters
+from theaters.serializers import TheaterSerializers
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 
 
 # Create your views here.
@@ -26,21 +31,52 @@ class SeatLayout(TemplateView):
     template_name = 'shows/seatlayout.html'
     
 
+# api views
 
 
-# class ShowListView(generics.ListAPIView):
-#     serializer_class = ShowSerializers
-
-#     def get_queryset(self):
-#         movie_id = self.kwargs['movie_id']
-#         return Shows1.objects.filter(movie=movie_id)
-
-
-# class ShowdetailsView(generics.RetrieveAPIView):
-#     queryset = Shows1.objects.all()
-#     serializer_class = ShowSerializers
+@api_view(['GET', 'POST'])
+def listshow(request, pk):
+    data = request.data
+    date = data['date']
+    shows = MovieShow.objects.filter(movie__id=pk, date=date)
+    print(date)
+    serializer = ShowSerializer(shows, many=True)
+    return Response(serializer.data)
 
 
-# class SeatListView(generics.ListAPIView):
-#     serializer_class = SeatSearializers
-#     queryset = ShowSeats.objects.all()
+@api_view(['GET'])
+def allshows(request):
+    shows = MovieShow.objects.all()
+    serializer = ShowSerializer(shows, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def showbyid(request, pk):
+    shows = MovieShow.objects.get(id=pk)
+    serializer = ShowSerializer(shows, many=False)
+    return Response(serializer.data)
+
+
+
+@api_view(['GET'])
+def listtheatrshow(request):
+    shows = MovieShow.objects.filter(movie__id=1, theater__id=1)
+    print(shows)
+    serializer = ShowSerializer(shows, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def seatlist(request, pk):
+    seat = Seats.objects.filter(show__id=pk)
+    serializer = SeatSerializer(seat, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def show_by_t(request):
+    theater = Theaters.objects.get(id=1)
+    show = MovieShow.objects.filter(theater=theater)
+    serializer = ShowSerializer(show, many=True)
+    return Response(serializer.data)

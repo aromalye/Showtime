@@ -3,6 +3,7 @@ from multiselectfield import MultiSelectField
 
 # Create your models here.
 
+
 class Movies(models.Model):
 
     format_choice = (
